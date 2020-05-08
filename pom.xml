@@ -59,6 +59,55 @@
         </dependency>
 
     </dependencies>
+    <build>
+        <!--maven is a build tool : it creates / compiles + running and even creates ( like report creation)
+          cucumber only looks on what you run.. maven put pieces together -->
+        <plugins>
+            <plugin>
+                <!--to run test on cucumber , using maven outside of IDE -->
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.0.0-M3</version>
+                <configuration>
+                    <!-- run order : Alphabetical : to run in alpahabetical order-->
+                    <runOrder>Alphabetical</runOrder>
+                <includes>
+                    <!--sets a detail on HOW this tool will be used -->
+                    <include>**/CucumberRunner.java</include>
+                   <include>**/FailedTestRunner.java</include> <!--you can run any other runner -->
+                </includes>
+                    <testFailureIgnore>true</testFailureIgnore>
+                    <!-- test failure ignore is set to true so that executin willnot stop when there is failure-->
+                </configuration>
+
+            </plugin>
+            <!--below is plugin for generating cucumber reports-->
+            <plugin>
+                <groupId>net.masterthought</groupId>
+                <artifactId>maven-cucumber-reporting</artifactId>
+                <version>5.0.0</version>
+                <executions>
+                    <execution> <!--line 91 - until like 95 is not optional) -->
+                        <id>execution</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <!--we named it amazing cucumber report ourselves-->
+                            <projectName>Amazing Cucumber Report</projectName>
+                            <outputDirectory>${project.build.directory}</outputDirectory>
+                            <inputDirectory>${project.build.directory}</inputDirectory>
+                            <jsonFiles>
+                                <param>**/cucumber*.json</param>
+                            </jsonFiles>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+        </plugins>
+    </build>
 
 
 </project>

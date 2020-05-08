@@ -11,7 +11,10 @@ public class ParametersStepDefinitions {
 
     @Given("I am on the {string} page")
     public void I_am_on_the_login_page(String page){
-
+    //when you have problem with yellow background :
+        // plugin in / dependency issue
+        // older version of cucumber java / j unit = more stable
+        // syntax error- wording from feature file has to match to wording in steps
 
     }
 
@@ -36,7 +39,7 @@ public class ParametersStepDefinitions {
     }
 
     @When("I enter the following data")
-    public void i_enter_the_following_data(Map<String, List<String>> dataTable) {
+    public void i_enter_the_following_data(List<Map<String, String>> dataTable) {
         // Write code here that turns the phrase above into concrete actions
         // For automatic transformation, change DataTable to one of
         // E, List<E>, List<List<E>>, List<Map<K,V>>, Map<K,V> or

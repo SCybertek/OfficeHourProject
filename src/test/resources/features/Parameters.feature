@@ -15,3 +15,4 @@ Feature: Parameters at work
       | Info1 | Info2 | Info3   |
       | name  | DOB   | address |
 
+# on line 8 3 does not have " " => and it makes in an int
